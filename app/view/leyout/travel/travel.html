@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="app/view/leyout/travel/travel.css" />
+<div ng-controller="TravelController">
+<div
+  class="tracking-info"
+  ng-class="{ 'expanded': isExpanded }"
+  ng-swipe-up="toggleTrackingInfo()"
+  ng-swipe-down="toggleTrackingInfo()"
+>
+    <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()"></div>
+    <div class="font-tt text-center">เส้นทางทั้งหมด</div>
+    <div ng-repeat="item in tracking">
+      <div class="tracking-station-flex">
+        <span class="station-box" ng-class="getBorderClass(item.station)">
+          {{ item.station }}
+        </span>
+        <img
+          class="tracking-station-img"
+          src="app/assets/icon/arrow-right.svg"
+          alt="arrow-right"
+        />
+        <span class="destination-box">
+          <div class="destination-text">
+            <div class="font-sm">ปลายทาง</div>
+            <div class="font-semibold">
+              {{ (travelList | filter:{name: item.station})[0].destination }}
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+  </div>
