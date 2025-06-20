@@ -1,0 +1,74 @@
+<div ng-controller="TrackingController">
+  <link rel="stylesheet" href="app/view/tracking/tracking.css" />
+
+  <!-- ใช้ wrapper ถ้าจำเป็น -->
+  <div style="position: relative">
+    <div id="map"></div>
+
+    <div ng-controller="TrackingController">
+      <!-- ปุ่ม search (icon) -->
+      <div
+        class="search-box"
+        ng-show="!isSearching"
+        ng-click="isSearching = true"
+      >
+        <img
+          src="app/assets/icon/search.svg"
+          alt="search"
+          class="search-icon"
+        />
+      </div>
+
+      <!-- input ลอยด้านบน -->
+      <div class="search-input-floating" ng-show="isSearching">
+        <img
+          src="app/assets/icon/search.svg"
+          alt="search"
+          class="search-icon"
+        />
+        <input
+          type="text"
+          class="ms-1 search-input"
+          placeholder="คุณจะไปที่ไหน"
+          ng-model="searchQuery"
+          autofocus
+        />
+        <button class="close-btn" ng-click="isSearching = false">×</button>
+      </div>
+    </div>
+
+      <!-- tracking-info ด้านล่าง -->
+<div
+  class="tracking-info"
+  ng-class="{ 'expanded': isExpanded }"
+  ng-swipe-up="toggleTrackingInfo()"
+  ng-swipe-down="toggleTrackingInfo()"
+>
+    <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()"></div>
+    <div class="font-tt text-center">เส้นทางทั้งหมด</div>
+    <div ng-repeat="item in tracking">
+      <div class="tracking-station-flex">
+        <span class="station-box" ng-class="getBorderClass(item.station)">
+          {{ item.station }}
+        </span>
+        <img
+          class="tracking-station-img"
+          src="app/assets/icon/arrow-right.svg"
+          alt="arrow-right"
+        />
+        <span class="destination-box">
+          <div class="destination-text">
+            <div class="font-sm">ปลายทาง</div>
+            <div class="font-semibold">
+              {{ (travelList | filter:{name: item.station})[0].destination }}
+            </div>
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  </div>
+
+
+</div>

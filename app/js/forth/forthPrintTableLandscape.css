@@ -1,0 +1,96 @@
+@page {
+    size: A4 landscape;
+    width: 1448px;
+    height: 1024px;
+    margin: 5mm;
+}
+#printContent, #printcontent {
+    font-family: cordia new !important;
+}
+#printContent {
+    size: A4 landscape;
+    width: 1448px;
+    margin: 5mm;
+}
+
+#printHead, #printHead div, #printHead1, #printHead1 div, #printHeadMap {
+    font-size: 36px;
+    font-weight: bolder;
+}
+
+#printDate {
+    font-size: 20px;
+}
+
+#printContent{
+    display: none;
+    background: white;
+}
+
+@media print {
+    @page {
+        size: A4 landscape;
+        width: 1448px;
+        height: 1024px;
+    }
+    body {
+        -webkit-print-color-adjust: exact;
+    }
+
+    body {
+        visibility: hidden;
+        background-color: white;
+        background-image: none;
+        z-index: 3;
+    }
+
+    #printContent {
+        display: block;
+        visibility: visible;
+        z-index: 3;
+        min-height: 1024px;
+    }
+
+    #printContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    #printHead, #printHead div, #printHead1, #printHead1 div, #printHeadMap {
+        font-size: 20px;
+    }
+    #printDate {
+        font-size: 18px;
+    }
+    table, th, td {
+        border-collapse:collapse;
+        border: 1px solid black;
+    }
+    table {
+        page-break-after:auto;
+        width: 100%;
+    }
+    tr {
+        page-break-inside:avoid;
+        page-break-after:auto;
+    }
+    th {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        padding: 5px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    td {
+        page-break-inside: avoid;
+        page-break-after: auto;
+        padding: 5px;
+        font-size: 12px;
+    }
+    thead {
+        display: table-header-group;
+    }
+    tfoot {
+        display: table-footer-group;
+    }
+}

@@ -1,0 +1,160 @@
+@page {
+    size: A4 portrait;
+    width: 1024px;
+    height: 1448px;
+    margin: 5mm;
+}
+#printContent, #printcontent {
+    font-family: cordia new !important;
+}
+#printContent { 
+    size: A4 portrait; 
+    width: 1024px; 
+    margin: 5mm; 
+}
+
+#printMap .angular-leaflet-map div.leaflet-control-container div.leaflet-top.leaflet-right {
+    display: none !important;
+}
+
+#printMap .angular-leaflet-map div.leaflet-control-container div.leaflet-top.leaflet-left {
+    display: none !important;
+}
+
+#printMap .angular-leaflet-map div.leaflet-control-container div.leaflet-bottom.leaflet-right {
+    display: none !important;
+}
+#printMap .angular-leaflet-map div.leaflet-control-container div.leaflet-bottom.leaflet-left {
+    display: none !important;
+}
+#printHead, #printHead div, #printHead1, #printHead1 div, #printHeadMap { 
+    font-size: 36px; 
+    font-weight: bolder;
+}
+
+div.printDuration {
+    font-size: 28px;
+    text-align: left;
+}
+#printDetail * { 
+    font-size: 28px;
+}
+
+#printDetail.mapReport * { 
+    font-size: 34px;
+    display: inline-block; 
+}
+
+#printDetail.mapReport * .head { 
+    font-weight: bolder;
+    width: 40%;
+    display: inline-block;
+}
+
+#printDetail.mapReport div.line { 
+    margin-left: 80px; 
+    width: 100%;
+    display: inline-block;
+    line-height: 46px;
+}
+
+#printDate { 
+    font-size: 20px; 
+}
+
+#printContent{ 
+    display: none; 
+    background: white;  
+}
+
+
+/* Overview Chart */
+
+#printLine flot div {
+    height: auto !important;
+    margin-bottom: 50px;
+}
+#printChart.overviewChart {
+    width: 700px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+}
+#printChart.overviewChart img {
+    min-width: 400px;
+    min-height: 200px;
+    max-height: 450px;
+    max-width: 100%;
+}
+
+#printLegend.overviewChart {
+    width: 300px;
+    display: inline-block;
+    float: right;
+    text-align: center;
+    max-height: 450px;
+}
+#printLegend.overviewChart .chart-legend {
+    width: 100%;
+    text-align: left;
+}
+#printContent:contains-selector(span.xaxisgraph) {
+    font-size: 20px;
+}
+#printDetail.overviewChart .groupSummary h3 {
+    font-size: 32px;
+}
+#printDetail.overviewChart, #printDetail.overviewChart div {
+    font-size: 26px !important;
+}
+#printDetail.overviewChart .groupSummary {
+    width: 48%;
+    display: inline-table;
+    margin: 20px 1%;
+}
+.xaxisgraph {
+    zoom: reset;
+}
+@media print {
+    @page {
+        size: A4 portrait;
+        width: 1024px;
+        height: 1448px;
+    }
+    body { 
+        -webkit-print-color-adjust: exact;
+    }
+    body { 
+        height: 200px;
+        visibility: hidden; 
+        background-color: white; 
+        background-image: none; 
+        text-align: center; 
+        vertical-align: middle; 
+        -webkit-print-color-adjust: exact;
+    }
+    body > div {
+        display: none;
+    }
+    #printContent, #printContent * {
+        display: block; 
+        visibility: visible;
+        -webkit-print-color-adjust: exact;
+    }
+
+    #printContent {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 2000;
+        background: #FFF;
+    }
+
+/*    #printDetail.mapReport * { 
+        font-size: 28px;
+        display: inline-block; 
+    }*/
+    .xaxisgraph {
+        font-size: 28px;
+    }
+}
