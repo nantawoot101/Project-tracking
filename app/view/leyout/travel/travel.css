@@ -12,6 +12,23 @@ transform: translateY(40%);
   transition: transform 0.3s ease;
 }
 
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+.ml-10{
+  margin-left: 10px;
+}
+
+.mt-10{
+  margin-top: 10px;
+}
+
+.mt-20{
+  margin-top: 20px;
+}
+
 
 .tracking-info.expanded {
   transform: translateY(0%);
@@ -129,4 +146,36 @@ transform: translateY(40%);
 
 .tracking-station:hover img {
   opacity: 1;
+}
+
+.number-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid #ccc;
+  text-align: center;
+  line-height: 28px;
+  font-weight: bold;
+  color: black;
+}
+
+.border-pink-2 {
+  border-color: #ff4da6 !important;
+}
+
+.border-orange-2 {
+  border-color: orange !important;
+}
+
+.border-green-2 {
+  border-color: #78d5b3 !important;
+}
+
+
+/* เส้นเชื่อมระหว่างหมายเลข */
+.connector-line {
+  width: 2px;
+  height: 40px; /* ปรับความยาวระยะห่างระหว่างจุด */
+  margin-top: -2px;
 }

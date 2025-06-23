@@ -2,31 +2,96 @@
 <div ng-controller="TravelController">
 <div
   class="tracking-info"
+  ng-show="step === 1"
   ng-class="{ 'expanded': isExpanded }"
   ng-swipe-up="toggleTrackingInfo()"
   ng-swipe-down="toggleTrackingInfo()"
 >
-    <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()"></div>
-    <div class="font-tt text-center">เส้นทางทั้งหมด</div>
-    <div ng-repeat="item in tracking">
-      <div class="tracking-station-flex">
-        <span class="station-box" ng-class="getBorderClass(item.station)">
-          {{ item.station }}
-        </span>
-        <img
-          class="tracking-station-img"
-          src="app/assets/icon/arrow-right.svg"
-          alt="arrow-right"
-        />
-        <span class="destination-box">
-          <div class="destination-text">
-            <div class="font-sm">ปลายทาง</div>
-            <div class="font-semibold">
-              {{ (travelList | filter:{name: item.station})[0].destination }}
-            </div>
-          </div>
-        </span>
-      </div>
+  <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()"></div>
+  
+  <div class="font-tt text-center">เส้นทางทั้งหมด</div>
+
+  <div ng-repeat="item in travelList" ng-click="goToStep2(item.tracking_id, item)">
+    <div class="tracking-station-flex">
+      <span
+        class="station-box"
+        ng-class="getBorderClass(item.station)"
+      >
+        {{ item.station }}
+      </span>
+      <img class="tracking-station-img" src="app/assets/icon/arrow-right.svg" />
+      <span class="destination-box">
+        <div class="destination-text">
+          <div class="font-sm">ปลายทาง</div>
+          <div class="font-semibold">{{ item.destination }}</div>
+        </div>
+      </span>
     </div>
   </div>
+</div>
+
+<div
+  class="tracking-info"
+  ng-class="{ 'expanded': isExpanded }"
+  ng-swipe-up="toggleTrackingInfo()"
+  ng-swipe-down="toggleTrackingInfo()"
+  ng-show="step === 2"
+>
+
+  <div class="tracking-drag-handle"></div>
+
+  <div ng-if="selectedTracking">
+    <div
+      class="station-box mt-20"
+      ng-class="getBorderClass(selectedTracking.station)"
+    >
+      {{ selectedTracking.station }}
+    </div>
+
+<div ng-repeat="d in selectedTracking.destination" class="mt-2">
+  <div class="flex ">
+    <!-- วงกลมหมายเลข -->
+    <div
+      class="number-circle"
+      ng-class="getBorderColorClass(selectedTracking.station)"
+    >
+      {{ $index + 1 }}
+    </div>
+
+      <div
+    ng-if="!$last"
+    class="connector-line"
+    ng-class="getBorderColorClass(selectedTracking.station)"
+  ></div>
+
+    <!-- ชื่อสถานี (ต่อท้าย) -->
+    <div class="ml-10">{{ d.name }}</div>
   </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<div
+  class="tracking-info"
+  ng-class="{ 'expanded': isExpanded }"
+  ng-swipe-up="toggleTrackingInfo()"
+  ng-swipe-down="toggleTrackingInfo()"
+  ng-show="step === 3"
+>
+  <div class="tracking-drag-handle"></div>
+
+  <div >
+    <div
+      class="station-box mt-20"
+      ng-class="getBorderClass(selectedTracking.station)"
+    >
+
+
+  </div>
+</div>
+
+
+</div>

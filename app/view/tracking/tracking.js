@@ -1,6 +1,5 @@
-app.controller("TrackingController", function ($scope, $timeout, ) {
-
-
+app.controller("TrackingController", function ($scope, $timeout) {
+  
   if (window.isMapInitialized) {
     return; // ถ้า map เคยสร้างแล้ว ให้ skip
   }
@@ -24,22 +23,22 @@ app.controller("TrackingController", function ($scope, $timeout, ) {
 
     const gpsLayer = L.layerGroup().addTo(map);
 
-    function createGoogleIcon() {
-      return L.icon({
-        iconUrl:
-          "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2_hdpi.png",
-        iconSize: [27, 43],
-        iconAnchor: [13, 43],
-        popupAnchor: [0, -40],
-      });
-    }
+    $scope.map = map;
+
+    const userLocationIcon = L.divIcon({
+      className: "google-user-location-icon",
+      iconSize: [30, 30],
+      iconAnchor: [15, 15],
+      popupAnchor: [0, -15],
+      html: '<div class="blue-dot-halo"></div>',
+    });
 
     map.locate({ setView: true, maxZoom: 16 });
 
     map.on("locationfound", function (e) {
       gpsLayer.clearLayers();
 
-      L.marker(e.latlng, { icon: createGoogleIcon() }).addTo(gpsLayer);
+      L.marker(e.latlng, { icon: userLocationIcon }).addTo(gpsLayer);
 
       L.circle(e.latlng, e.accuracy / 2).addTo(gpsLayer);
     });
@@ -47,11 +46,26 @@ app.controller("TrackingController", function ($scope, $timeout, ) {
     map.on("locationerror", function () {
       alert("ไม่สามารถระบุตำแหน่งของคุณได้");
     });
+
+
+    // ฟังก์ชันเมื่อกดปุ่ม paper-plane
+
+
+
   }, 100);
-  
+
   $scope.isExpanded = false;
 
   $scope.toggleTrackingInfo = function () {
     $scope.isExpanded = !$scope.isExpanded;
   };
+
+
+    $scope.gotoMyLocation = function () {
+    if ($scope.map) {
+      $scope.map.locate({ setView: true, maxZoom: 16 });
+    }
+  };
+
+  
 });

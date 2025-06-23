@@ -10,7 +10,7 @@
       <div
         class="search-box"
         ng-show="!isSearching"
-        ng-click="isSearching = true"
+         ng-cloak ng-click="isSearching = true"
       >
         <img
           src="app/assets/icon/search.svg"
@@ -35,6 +35,18 @@
         />
         <button class="close-btn" ng-click="isSearching = false">×</button>
       </div>
+
+
+<div class="paper-plane-container">
+  <div class="paper-plane-box">
+    <img
+      src="app/assets/icon/paper-plane.svg"
+      alt="paper-plane"
+      class="paper-plane-icon"
+      ng-click="gotoMyLocation()"
+    />
+  </div>
+</div>
     </div>
 
     <!-- tracking-info ด้านล่าง -->
