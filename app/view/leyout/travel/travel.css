@@ -256,3 +256,41 @@
   filter: brightness(0) invert(1); /* เปลี่ยนเป็นสีขาว */
 }
 
+.bus-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 4px;
+  border-radius: 20px;
+}
+
+.bus-wrapper-pink {
+  background-color: #ff69b4;
+  color: #ff69b4;
+}
+
+.bus-wrapper-orange {
+  background-color: orange;
+  color: orange;
+}
+
+.bus-wrapper-green {
+  background-color: #78d5b3;
+  color: #78d5b3;
+}
+
+/* ให้ตัวเลขสีขาวตามพื้นหลัง */
+.bus-number-in-rect {
+  font-size: 12px;
+  font-weight: bold;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: white;
+  color: inherit; /* ใช้สีตาม parent */
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  display: inline-block;
+}
+
+

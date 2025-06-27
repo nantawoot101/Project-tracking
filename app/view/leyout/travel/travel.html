@@ -1,152 +1,96 @@
 <link rel="stylesheet" href="app/view/leyout/travel/travel.css" />
 <div ng-controller="TravelController">
-<div
-  class="tracking-info"
-  ng-show="step === 1"
-  ng-class="{ 'expanded': isExpanded }"
-  ng-swipe-up="toggleTrackingInfo()"
-  ng-swipe-down="toggleTrackingInfo()"
->
-  <div class="tracking-drag-handle"
-    ng-click="toggleTrackingInfo()"
-    ng-mousedown="startDrag($event)"
-    ng-touchstart="startDrag($event)"
-    ng-mousemove="onDrag($event)"
-    ng-touchmove="onDrag($event)"
-    ng-mouseup="endDrag($event)"
-    ng-touchend="endDrag($event)"
-  ></div>
+  <div class="tracking-info" ng-show="step === 1" ng-class="{ 'expanded': isExpanded }"
+    ng-swipe-up="toggleTrackingInfo()" ng-swipe-down="toggleTrackingInfo()">
+    <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()" ng-mousedown="startDrag($event)"
+      ng-touchstart="startDrag($event)" ng-mousemove="onDrag($event)" ng-touchmove="onDrag($event)"
+      ng-mouseup="endDrag($event)" ng-touchend="endDrag($event)"></div>
 
-  <div class="font-tt text-center">เส้นทางทั้งหมด</div>
+    <div class="font-tt text-center">เส้นทางทั้งหมด</div>
 
-  <div ng-repeat="item in travelList" ng-click="goToStep2(item.tracking_id, item)">
-    <div class="tracking-station-flex">
-      <span
-        class="station-box"
-        ng-class="getBorderClass(item.station)"
-      >
-        {{ item.station }}
-      </span>
-      <img class="tracking-station-img" src="app/assets/icon/arrow-right.svg" />
-      <span class="destination-box">
-        <div class="destination-text">
-          <div class="font-sm">ปลายทาง</div>
-          <div class="font-semibold">{{ item.destination }}</div>
-        </div>
-      </span>
+    <div ng-repeat="item in travelList" ng-click="goToStep2(item.tracking_id, item)">
+      <div class="tracking-station-flex">
+        <span class="station-box" ng-class="getBorderClass(item.station)">
+          {{ item.station }}
+        </span>
+        <img class="tracking-station-img" src="app/assets/icon/arrow-right.svg" />
+        <span class="destination-box">
+          <div class="destination-text">
+            <div class="font-sm">ปลายทาง</div>
+            <div class="font-semibold">{{ item.destination }}</div>
+          </div>
+        </span>
+      </div>
     </div>
   </div>
-</div>
 
-<div
-  class="tracking-info"
-  ng-class="{ 'expanded': isExpanded }"
-  ng-swipe-up="toggleTrackingInfo()"
-  ng-swipe-down="toggleTrackingInfo()"
-  ng-show="step === 2"
->
-  <div class="tracking-drag-handle"
-    ng-click="toggleTrackingInfo()"
-    ng-mousedown="startDrag($event)"
-    ng-touchstart="startDrag($event)"
-    ng-mousemove="onDrag($event)"
-    ng-touchmove="onDrag($event)"
-    ng-mouseup="endDrag($event)"
-    ng-touchend="endDrag($event)"
-  ></div>
+  <div class="tracking-info" ng-class="{ 'expanded': isExpanded }" ng-swipe-up="toggleTrackingInfo()"
+    ng-swipe-down="toggleTrackingInfo()" ng-show="step === 2">
+    <div class="tracking-drag-handle" ng-click="toggleTrackingInfo()" ng-mousedown="startDrag($event)"
+      ng-touchstart="startDrag($event)" ng-mousemove="onDrag($event)" ng-touchmove="onDrag($event)"
+      ng-mouseup="endDrag($event)" ng-touchend="endDrag($event)"></div>
 
-  <!-- ปุ่มกากบาท -->
-  <button
-    class="close-btn-tab"
-    ng-click="step = 1"
-    aria-label="ปิด"
-    style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 28px; color: #888; cursor: pointer; z-index: 10;"
-  >&times;</button>
+    <!-- ปุ่มกากบาท -->
+    <button class="close-btn-tab" ng-click="step = 1" aria-label="ปิด"
+      style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 28px; color: #888; cursor: pointer; z-index: 10;">&times;</button>
 
-  <div ng-if="selectedTracking">
-    <div
-      class="station-box mt-20"
-      ng-class="getBorderClass(selectedTracking.station)"
-    >
-    <img src="app/assets/icon/bus-simple.svg" class="bus-img" alt="bus">
-      {{ selectedTracking.station }}
-    </div>
+    <div ng-if="selectedTracking">
+      <div class="station-box mt-20" ng-class="getBorderClass(selectedTracking.station)">
+        <img src="app/assets/icon/bus-simple.svg" class="bus-img" alt="bus">
+        {{ selectedTracking.station }}
+      </div>
 
-    <div class="vertical-connector-container" style="position: relative;">
-      <div ng-repeat="d in selectedTracking.destination" class="mt-2" style="position: relative; z-index: 1;">
-        <div class="flex" style="position: relative;">
-          <!-- bus icon ซ้าย, หมายเลขและเส้นขยับไปขวา -->
-          <div style="min-width:24px; display:flex; align-items:center; justify-content:center;">
-            
-            <img
-              ng-repeat="bus in nearby_bus | filter:{station: selectedTracking.station}"
-              ng-if="bus.destination_id == d.id"
-              ng-src="{{bus.icon}}"
-              alt="bus"
-              class="bus-img"
-            >
-          </div>
-          <div
-            class="number-circle"
-            ng-class="getBorderColorClass(selectedTracking.station)"
-            style="z-index:2; position: relative; margin-left:8px;"
-          >
-            {{ $index + 1 }}
-            <!-- เส้นแนวตั้งตรงกลางเลข (เฉพาะถ้าไม่ใช่เลขสุดท้าย) -->
-            <div
-              ng-if="!$last"
-              class="vertical-connector"
-              ng-class="{
+      <div class="vertical-connector-container" style="position: relative;">
+        <div ng-repeat="d in selectedTracking.destination" class="mt-2" style="position: relative; z-index: 1;">
+          <div class="flex" style="position: relative;">
+            <!-- bus number + icon (ถ้ามี) -->
+            <div style="display:flex; align-items:center; justify-content:center; min-width:56px;">
+              <div class="bus-wrapper" ng-class="getStationColorClass(selectedTracking.station)"
+                ng-repeat="bus in nearby_bus | filter:{station: selectedTracking.station}"
+                ng-if="bus.destination_id == d.id">
+                <span class="bus-number-in-rect">{{bus.number}}</span>
+                <img src ="app/assets/icon/bus-simple.svg" alt="bus" class="bus-img">
+              </div>
+            </div>
+
+            <!-- number-circle ขยับขวาเสมอ (margin-left: 16px;) -->
+            <div class="number-circle" ng-class="getBorderColorClass(selectedTracking.station)"
+              style="z-index:2; position: relative; margin-left:16px;">
+              {{ $index + 1 }}
+              <!-- เส้นแนวตั้งตรงกลางเลข (เฉพาะถ้าไม่ใช่เลขสุดท้าย) -->
+              <div ng-if="!$last" class="vertical-connector" ng-class="{
                 'vertical-connector-pink': selectedTracking.station === 'EXPRESS',
                 'vertical-connector-orange': selectedTracking.station === 'B LINE',
                 'vertical-connector-green': selectedTracking.station === 'F LINE'
-              }"
-            ></div>
-          </div>
-          <!-- เส้นแนวนอน (ถ้ามี) -->
-          <div
-            ng-if="!$last"
-            class="connector-line"
-            ng-class="getBorderColorClass(selectedTracking.station)"
-          ></div>
-          <!-- ชื่อสถานี (ต่อท้าย) -->
-          <div class="ml-10">
-            {{ d.name }}
+              }"></div>
+            </div>
+            <!-- เส้นแนวนอน (ถ้ามี) -->
+            <div ng-if="!$last" class="connector-line" ng-class="getBorderColorClass(selectedTracking.station)"></div>
+            <!-- ชื่อสถานี (ต่อท้าย) -->
+            <div class="ml-10">
+              {{ d.name }}
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<div
-  class="tracking-info"
-  ng-class="{ 'expanded': isExpanded }"
-  ng-swipe-up="toggleTrackingInfo()"
-  ng-swipe-down="toggleTrackingInfo()"
-  ng-show="step === 3"
->
-  <div class="tracking-drag-handle"
-    ng-mousedown="startDrag($event)"
-    ng-touchstart="startDrag($event)"
-    ng-mousemove="onDrag($event)"
-    ng-touchmove="onDrag($event)"
-    ng-mouseup="endDrag($event)"
-    ng-touchend="endDrag($event)"
-  ></div>
+  <div class="tracking-info" ng-class="{ 'expanded': isExpanded }" ng-swipe-up="toggleTrackingInfo()"
+    ng-swipe-down="toggleTrackingInfo()" ng-show="step === 3">
+    <div class="tracking-drag-handle" ng-mousedown="startDrag($event)" ng-touchstart="startDrag($event)"
+      ng-mousemove="onDrag($event)" ng-touchmove="onDrag($event)" ng-mouseup="endDrag($event)"
+      ng-touchend="endDrag($event)"></div>
 
-  <div >
-    <div
-      class="station-box mt-20"
-      ng-class="getBorderClass(selectedTracking.station)"
-    >
+    <div>
+      <div class="station-box mt-20" ng-class="getBorderClass(selectedTracking.station)">
+
+
+      </div>
+    </div>
 
 
   </div>
-</div>
-
-
-</div>
 </div>
 </div>

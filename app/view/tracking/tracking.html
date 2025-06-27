@@ -3,8 +3,10 @@
 
   <!-- ใช้ wrapper ถ้าจำเป็น -->
   <div style="position: relative">
+    <!-- ให้แน่ใจว่ามี div id="map" แค่ 1 ตัว และอยู่นอก ng-controller -->
     <div id="map"></div>
 
+    <!-- TrackingController ควรมีแค่ 1 instance -->
     <div ng-controller="TrackingController">
 
       <!-- <div
@@ -37,19 +39,19 @@
       </div>
 
 
-<div class="paper-plane-container">
-  <button class="paper-plane-box">
-    <img
-      src="app/assets/icon/paper-plane.svg"
-      alt="paper-plane"
-      class="paper-plane-icon"
-      ng-click="gotoMyLocation()"
-    />
-  </button>
-</div>
+      <div class="paper-plane-container">
+        <button class="paper-plane-box">
+          <img
+            src="app/assets/icon/paper-plane.svg"
+            alt="paper-plane"
+            class="paper-plane-icon"
+            ng-click="gotoMyLocation()"
+          />
+        </button>
+      </div>
     </div>
 
-    <!-- tracking-info ด้านล่าง -->
+    <!-- TravelController แยกออกจาก TrackingController -->
     <div ng-controller="TravelController">
       <div ng-include="'app/view/leyout/travel/travel.html'"></div>
     </div>

@@ -17,6 +17,14 @@ $scope.getBorderColorClass = function(station) {
 };
 
 
+$scope.getStationColorClass = function (station) {
+  if (station === 'EXPRESS') return 'bus-wrapper-pink';
+  if (station === 'B LINE') return 'bus-wrapper-orange';
+  if (station === 'F LINE') return 'bus-wrapper-green';
+  return '';
+};
+
+
 
   $http.get("app/data/tracking.json")
     .then(function (response) {

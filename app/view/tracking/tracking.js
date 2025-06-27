@@ -5,6 +5,12 @@ app.controller("TrackingController", function ($scope, $timeout) {
   window.isMapInitialized = true;
 
   $timeout(() => {
+    // ลบแผนที่เดิมถ้ามี (ป้องกันซ้อนทับ)
+    if (window._leafletMapInstance) {
+      window._leafletMapInstance.remove();
+      window._leafletMapInstance = null;
+    }
+
     var openStreenMap = L.tileLayer(
       "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
@@ -51,7 +57,7 @@ app.controller("TrackingController", function ($scope, $timeout) {
       center: [13.7563, 100.5018],
       zoom: 13,
       zoomControl: false,
-      layers: [openStreenMap, roadMap, satelliteMap, trafficMap, forthMap],
+      layers: [roadMap], // แก้ไขตรงนี้: ใส่เฉพาะ base layer ที่ต้องการแสดงเริ่มต้น
       attributionControl: false,
     });
 
@@ -97,6 +103,7 @@ app.controller("TrackingController", function ($scope, $timeout) {
       alert("ไม่สามารถระบุตำแหน่งของคุณได้");
     });
 
+    window._leafletMapInstance = map; // เก็บ instance ของ map ไว้เพื่อลบในครั้งถัดไปถ้าจำเป็น
   }, 100);
 
   $scope.isExpanded = false;
