@@ -6,8 +6,8 @@
     <div id="map"></div>
 
     <div ng-controller="TrackingController">
-      <!-- ปุ่ม search (icon) -->
-      <div
+
+      <!-- <div
         class="search-box"
         ng-show="!isSearching"
          ng-cloak ng-click="isSearching = true"
@@ -17,7 +17,7 @@
           alt="search"
           class="search-icon"
         />
-      </div>
+      </div> -->
 
       <!-- input ลอยด้านบน -->
       <div class="search-input-floating" ng-show="isSearching">
@@ -38,14 +38,14 @@
 
 
 <div class="paper-plane-container">
-  <div class="paper-plane-box">
+  <button class="paper-plane-box">
     <img
       src="app/assets/icon/paper-plane.svg"
       alt="paper-plane"
       class="paper-plane-icon"
       ng-click="gotoMyLocation()"
     />
-  </div>
+  </button>
 </div>
     </div>
 

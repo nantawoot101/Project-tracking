@@ -5,30 +5,30 @@
   left: 0;
   right: 0;
   max-height: 60%;
-  background: rgba(241, 239, 239, 0.8);
-  border-radius: 20px 20px 0px 0px; 
-  z-index: 999; 
-transform: translateY(40%);
+  background: #f3f2f2; /* เปลี่ยนเป็นสีเทา ไม่โปร่งใส */
+  border-radius: 25px 25px 0px 0px;
+  box-shadow: 0 -2px 10px rgba(1, 1, 1, 0.2);
+  z-index: 999;
+  transform: translateY(40%);
   transition: transform 0.3s ease;
 }
 
-.flex{
+.flex {
   display: flex;
   align-items: center;
 }
 
-.ml-10{
+.ml-10 {
   margin-left: 10px;
 }
 
-.mt-10{
+.mt-10 {
   margin-top: 10px;
 }
 
-.mt-20{
+.mt-20 {
   margin-top: 20px;
 }
-
 
 .tracking-info.expanded {
   transform: translateY(0%);
@@ -41,8 +41,6 @@ transform: translateY(40%);
   padding: 8px 0;
 }
 
-
-
 /* แถบลาก */
 .tracking-drag-handle {
   width: 40px;
@@ -52,7 +50,6 @@ transform: translateY(40%);
   margin: 10px auto;
   cursor: grab;
 }
-
 
 .font-tt {
   font-size: 24px;
@@ -100,13 +97,12 @@ transform: translateY(40%);
 
 /* ป้องกัน station-box ยืดจนดันปลายทาง */
 .station-box {
-  padding: 6px 12px;
-  border-radius: 6px;
+  padding: 6px 8px;      /* เพิ่ม padding บน-ล่าง ให้สูงขึ้น */
+  border-radius: 16px;
   font-size: 12px;
   border: 2px solid transparent;
-  border-radius: 20px;
   font-weight: bold;
-  max-width: 150px;
+  display: inline-block; /* ให้ขยายตามเนื้อหา */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -172,10 +168,91 @@ transform: translateY(40%);
   border-color: #78d5b3 !important;
 }
 
-
 /* เส้นเชื่อมระหว่างหมายเลข */
 .connector-line {
   width: 2px;
   height: 40px; /* ปรับความยาวระยะห่างระหว่างจุด */
   margin-top: -2px;
 }
+
+.vertical-connector-container {
+  position: relative;
+  /* ให้ container สูงเท่ากับจำนวนจุด */
+  min-height: 60px;
+}
+
+.vertical-connector {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 40px; /* ปรับความสูงให้ตรงกับระยะห่างแต่ละจุด */
+  border-radius: 2px;
+  z-index: 1;
+}
+.vertical-connector-pink {
+  background: #e91e63;
+}
+.vertical-connector-orange {
+  background: #ff9800;
+}
+.vertical-connector-green {
+  background: #00bfae;
+}
+
+.mt-2 {
+  margin-top: 20px;
+}
+
+.close-btn-tab {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  background: #e0e0e0;
+  border: none;
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  z-index: 10;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.close-btn-tab:hover {
+  color: #e91e63;
+  background: #cccccc;
+}
+
+/* เพิ่ม selector นี้เพื่อ override เฉพาะใน vertical-connector-container */
+.vertical-connector-container .flex {
+  align-items: flex-start;
+}
+
+.vertical-connector-container .ml-10 {
+  flex: 1 1 0%;
+  min-width: 0;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.vertical-connector-container .tracking-station {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  white-space: normal;
+}
+
+.bus-img{
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  overflow: hidden;
+  filter: brightness(0) invert(1); /* เปลี่ยนเป็นสีขาว */
+}
+
